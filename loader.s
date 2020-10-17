@@ -10,6 +10,6 @@ align 4 ;code must be aligned on 4 bytes
     dd FLAG
     DD CHEKSUM
 .loader:
-    mov eax 0xCAFEBABE ;mov 0xCAFEBABE to eax register
+    mov eax, 0xCAFEBABE ;mov 0xCAFEBABE to eax register
 .loop:
-    jmp loop ;infinite loop
+    jmp .loop ;infinite loop
