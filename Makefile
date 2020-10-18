@@ -19,13 +19,13 @@ CFLAGS	=	-m32 \
 			-fno-stack-protector \
          	-nostartfiles \
 		 	-nodefaultlibs \
-		 	-Wall \
-		 	-Wextra \
-		 	-Werror \
 		 	-c \
 			-I $(LIBS_INCLUDE_PATH) \
 			-L $(LIBS_FOLDER_PATH) \
-			-l $(LIBS)
+			-l $(LIBS) \
+			-Wall \
+		 	-Wextra \
+		 	-Werror
 
 LDFLAGS	=	-T link.ld \
 			-melf_i386
@@ -96,5 +96,7 @@ fclean: clean
 	@echo "$(END)"
 
 re: fclean all
+
+rerun: re run
 
 .PHONY: clean fclean all re run $(ISO) $(LIBS) $(ELF)

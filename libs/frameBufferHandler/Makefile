@@ -1,3 +1,10 @@
+##
+## Personal PROJECT, 2020
+## OX
+## File description:
+## frameBufferHandler Makefile
+##
+
 CC	=	gcc
 
 INCLUDE_PATH	=	include/
@@ -9,11 +16,11 @@ CFLAGS	=	-m32 \
 			-fno-stack-protector \
          	-nostartfiles \
 		 	-nodefaultlibs \
+		 	-c \
+			-I $(INCLUDE_PATH) \
 		 	-Wall \
 		 	-Wextra \
 		 	-Werror \
-		 	-c \
-			-I $(INCLUDE_PATH)
 
 LIB	=	lib_frameBufferHandler.a
 
