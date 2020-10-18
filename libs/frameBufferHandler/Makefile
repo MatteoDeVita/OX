@@ -13,7 +13,7 @@ CFLAGS	=	-m32 \
 		 	-Wextra \
 		 	-Werror \
 		 	-c \
-			-I $(INCLUDE_PATH)			 
+			-I $(INCLUDE_PATH)
 
 LIB	=	lib_frameBufferHandler.a
 

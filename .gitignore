@@ -1,5 +1,7 @@
 *.o
+*.a
 *.elf
 *.iso
 
 bochslog.txt
+compil_protocol.txt
