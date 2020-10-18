@@ -36,6 +36,8 @@ ASFLAGS	=	-f elf
 
 ELF	=	./iso/boot/kernel.elf
 
+ISO	=	OX.iso
+
 BOLD	=	\033[1m
 CYAN		=   \033[36m
 GREEN	=   \033[32m
@@ -46,12 +48,14 @@ all: $(LIBS) $(ELF)
 $(ELF): $(OBJ)
 	@echo "$(BOLD)$(CYAN)"
 	ld $(LDFLAGS) $(OBJ) -L $(LIBS_FOLDER_PATH) -l $(LIBS) -o $(ELF)
+	@echo "$(END)"
 
 $(LIBS):
 	@echo "$(BOLD)$(GREEN)"
 	make -C $(LIBS_FOLDER_PATH)
+	@echo "$(END)"
 
-os.iso: $(ELF)
+$(ISO): $(ELF)
 	genisoimage -R                              \
 				-b boot/grub/stage2_eltorito    \
 				-no-emul-boot                   \
@@ -63,18 +67,26 @@ os.iso: $(ELF)
 				-o OX.iso                       \
 				iso
 
-run: os.iso
+run: $(ISO)
 	bochs -f bochsrc.txt -q
 
 %.o: %.s
 	@echo "$(BOLD)$(CYAN)"
 	$(AS) $(ASFLAGS) $< -o $@
+	@echo "$(END)"
 
 %.o: %.c
 	@echo "$(BOLD)$(CYAN)"
 	$(CC) $(CFLAGS)  $< -o $@
+	@echo "$(END)"
 
 clean:
-	rm -rf *.o $(ELF) os.iso
+	rm -rf *.o 
+	make clean -C $(LIBS_FOLDER_PATH)
 
-.PHONY: clean fclean all re
+fclean: clean
+	rm -rf $(ELF) $(ISO)
+
+re: fclean all
+
+.PHONY: clean fclean all re run $(ISO) $(LIBS) $(ELF)
