@@ -39,7 +39,7 @@ ELF	=	./iso/boot/kernel.elf
 ISO	=	OX.iso
 
 BOLD	=	\033[1m
-CYAN		=   \033[36m
+CYAN	=   \033[36m
 GREEN	=   \033[32m
 END		=	\033[0m
 
@@ -55,7 +55,7 @@ $(LIBS):
 	make -C $(LIBS_FOLDER_PATH)
 	@echo "$(END)"
 
-$(ISO): $(ELF)
+$(ISO): all
 	genisoimage -R                              \
 				-b boot/grub/stage2_eltorito    \
 				-no-emul-boot                   \
@@ -81,12 +81,19 @@ run: $(ISO)
 	@echo "$(END)"
 
 clean:
-	rm -rf *.o 
+	@echo "$(BOLD)$(CYAN)"
+	rm -rf $(OBJ)
+	@echo "$(BOLD)$(GREEN)"
 	make clean -C $(LIBS_FOLDER_PATH)
+	@echo "$(END)"
+
 
 fclean: clean
+	@echo "$(BOLD)$(CYAN)"
 	rm -rf $(ELF) $(ISO)
+	@echo "$(BOLD)$(GREEN)"
 	make fclean -C $(LIBS_FOLDER_PATH)
+	@echo "$(END)"
 
 re: fclean all
 
