@@ -7,6 +7,9 @@
 
 #pragma once
 
+/*
+*   frameBufferColors enumeration : used to describe frameBuffer colors
+*/
 typedef enum frameBufferColors {
     FB_BLACK = 0,
     FB_BLUE,
@@ -27,7 +30,7 @@ typedef enum frameBufferColors {
 } frameBufferColors_t;
 
 /*
-    frameBuffer structure : used for I/O operations on frameBuffer
+*   frameBuffer structure : used for I/O operations on frameBuffer
 */
 typedef struct frameBuffer {
     //public:
