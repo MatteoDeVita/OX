@@ -86,6 +86,7 @@ clean:
 
 fclean: clean
 	rm -rf $(ELF) $(ISO)
+	make fclean -C $(LIBS_FOLDER_PATH)
 
 re: fclean all
 
